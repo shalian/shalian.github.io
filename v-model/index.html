@@ -1,0 +1,249 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>v-model的使用 | KK</title><meta name="author" content="KK"><meta name="copyright" content="KK"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="什么是 v-model v-model 是 Vue 框架的一种内置的 API 指令，本质是一种语法糖写法。 它负责监听用户的输入事件以更新数据，并对一些极端场景进行一些特殊处理。   数据不仅能从 data 流向页面，还可以从页面流向 data。 v-model:value 可以简写为 v-model，因为 v-model 默认收集的就是 value 值。  原理 v-model 其实是一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="v-model的使用">
+<meta property="og:url" content="https://vercel.slk427.top/v-model/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="什么是 v-model v-model 是 Vue 框架的一种内置的 API 指令，本质是一种语法糖写法。 它负责监听用户的输入事件以更新数据，并对一些极端场景进行一些特殊处理。   数据不仅能从 data 流向页面，还可以从页面流向 data。 v-model:value 可以简写为 v-model，因为 v-model 默认收集的就是 value 值。  原理 v-model 其实是一">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg.png">
+<meta property="article:published_time" content="2023-09-10T02:48:53.000Z">
+<meta property="article:modified_time" content="2023-09-23T12:43:19.820Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://vercel.slk427.top/v-model/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"E69YIXIC70","apiKey":"049012dbe7a1e556d9bfcad6dd3666f8","indexName":"hexo_blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-right"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'v-model的使用',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-09-23 20:43:19'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4230681_8jlco073viu.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><link rel="stylesheet" href="/css/font.css"><link rel="stylesheet" href="/css/scrollbar.css"><link rel="stylesheet" href="/css/nav.css"><link rel="stylesheet" href="/css/aside.css"><link rel="stylesheet" href="/css/footer.css"><link rel="stylesheet" href="/css/other.css"><link rel="stylesheet" href="/css/tags.css"><link rel="stylesheet" href="/css/universe.css"><link rel="stylesheet" href="/css/categories.css"><link rel="stylesheet" href="/css/weibo.css"><link rel="stylesheet" href="/css/runtime.css"><link rel="stylesheet" href="/css/new_year.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-archive"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw iconfont icon-image"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-wodedamaijihuo"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg.png')"><nav id="nav"><span id="blog-info"><a href="/" title="KK"><span class="site-name">KK</span></a></span><div id="weather"><div id="tp-weather-widget"></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-archive"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw iconfont icon-image"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-wodedamaijihuo"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i></a></div></nav><div id="post-info"><h1 class="post-title">v-model的使用</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon fas fa-history"></i><span class="post-meta-label">更新于</span><time datetime="2023-09-23T12:43:19.820Z" title="更新于 2023-09-23 20:43:19">2023-09-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Vue/">Vue</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">860</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="v-model的使用"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><!-- [](你要添加的内容) -->
+<!-- [](展开) -->
+<!-- <details>
+<summary>点击查看详细内容</summary>
+展开的内容
+</details> -->
+
+<h2 id="什么是-v-model"><a href="#什么是-v-model" class="headerlink" title="什么是 v-model"></a>什么是 v-model</h2><ul>
+<li>v-model 是 Vue 框架的一种内置的 API 指令，本质是一种语法糖写法。</li>
+<li>它负责监听用户的输入事件以更新数据，并对一些极端场景进行一些特殊处理。</li>
+</ul>
+<ul>
+<li>数据不仅能从 data 流向页面，还可以从页面流向 data。</li>
+<li>v-model:value 可以简写为 v-model，因为 v-model 默认收集的就是 value 值。</li>
+</ul>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><ul>
+<li><p>v-model 其实是一个语法糖，本质上是依靠 <mark class="hl-label blue">v-bind</mark>  和 <mark class="hl-label blue">v-on</mark>  实现：</p>
+<ul>
+<li>v-bind：value 属性绑定响应式数据</li>
+<li>v-on：绑定 input 事件监听到函数中，函数会获取最新的值赋值到绑定的属性中</li>
+</ul>
+</li>
+<li><p>v-model 在内部为不同的输入元素使用不同的属性并抛出不同的事件：</p>
+<ul>
+<li>text 和 textarea 元素使用 <mark class="hl-label blue">value</mark>  属性和 <mark class="hl-label blue">input</mark>  事件</li>
+<li>checkbox 和 radio 使用 <mark class="hl-label blue">checked</mark>  属性和 <mark class="hl-label blue">change</mark>  事件；</li>
+<li>select 将 <mark class="hl-label blue">value</mark>  作为 prop 并将 <mark class="hl-label blue">change</mark>  作为事件。</li>
+</ul>
+</li>
+</ul>
+<p>例如：<code>&lt;input type=&quot;text&quot; :value=&quot;inputValue&quot; @input=&quot;inputValue=$event.target.value&quot;/&gt;</code><br>和 <code>&lt;input type=&quot;text&quot; v-model=&quot;inputValue&quot; /&gt;</code> 等价</p>
+<h4 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&lt;template&gt;</span></span><br><span class="line">  <span class="string">&lt;div&gt;</span></span><br><span class="line">    <span class="string">&lt;input</span> <span class="string">type=&quot;text&quot;</span> <span class="string">:value=&quot;inputValue&quot;</span> <span class="string">@input=&quot;handleInput&quot;</span> <span class="string">/&gt;</span></span><br><span class="line">    <span class="string">&lt;input</span> <span class="string">type=&quot;text&quot;</span> <span class="string">v-model=&quot;inputValue&quot;</span> <span class="string">/&gt;</span></span><br><span class="line">    <span class="string">&lt;div&gt;&#123;&#123;</span> <span class="string">inputValue</span> <span class="string">&#125;&#125;&lt;/div&gt;</span></span><br><span class="line">  <span class="string">&lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/template&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;script</span> <span class="string">setup&gt;</span></span><br><span class="line">  <span class="string">import</span> &#123; <span class="string">ref</span> &#125; <span class="string">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line">  <span class="string">const</span> <span class="string">inputValue</span> <span class="string">=</span> <span class="string">ref()</span></span><br><span class="line">  <span class="string">const</span> <span class="string">handleInput</span> <span class="string">=</span> <span class="string">(event)</span> <span class="string">=&gt;</span> &#123;</span><br><span class="line">    <span class="string">inputValue.value</span> <span class="string">=</span> <span class="string">event.target.value</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><div style="text-indent:2em;">
+v-model 指令可以在表单 <mark class="hl-label blue">input</mark> 、<mark class="hl-label blue">textarea</mark>  以及 <mark class="hl-label blue">select</mark>  元素上创建双向数据绑定它会根据控件类型自动选取正确的方法来更新元素。
+</div>
+
+<p>例如：<code>&lt;input type=&quot;text&quot; v-model=&quot;inputValue&quot; /&gt; </code></p>
+<ul>
+<li>inputValue 改变，input 输入框内容页随之改变</li>
+<li>input 输入框内容改变时，inputValue 也会发生改变</li>
+</ul>
+<h2 id="组件传值"><a href="#组件传值" class="headerlink" title="组件传值"></a>组件传值</h2><mark class="hl-label blue">v-model</mark>  也可以实现组件间的传值
+
+<h3 id="父组件"><a href="#父组件" class="headerlink" title="父组件"></a>父组件</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&lt;template&gt;</span></span><br><span class="line">  <span class="string">&lt;div&gt;</span></span><br><span class="line">    <span class="string">&lt;child</span> <span class="string">v-model=&quot;inputValue&quot;/&gt;</span></span><br><span class="line">    <span class="string">&lt;div&gt;父组件value：&#123;&#123;</span> <span class="string">inputValue</span> <span class="string">&#125;&#125;&lt;/div&gt;</span></span><br><span class="line">  <span class="string">&lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/template&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;script</span> <span class="string">setup&gt;</span></span><br><span class="line">  <span class="string">import</span> &#123; <span class="string">ref</span> &#125; <span class="string">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line">  <span class="string">const</span> <span class="string">inputValue</span> <span class="string">=</span> <span class="string">ref()</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="子组件"><a href="#子组件" class="headerlink" title="子组件"></a>子组件</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&lt;template&gt;</span></span><br><span class="line">  <span class="string">&lt;div&gt;</span></span><br><span class="line">    <span class="string">&lt;input</span> <span class="string">type=&quot;text&quot;</span> <span class="string">class=&quot;input&quot;</span> <span class="string">v-model=&quot;vle&quot;</span> <span class="string">@input=&quot;handleInput&quot;</span> <span class="string">/&gt;</span></span><br><span class="line">    <span class="string">&lt;div&gt;子组件value：&#123;&#123;</span> <span class="string">vle</span> <span class="string">&#125;&#125;&lt;/div&gt;</span></span><br><span class="line">  <span class="string">&lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/template&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;script</span> <span class="string">setup&gt;</span></span><br><span class="line">  <span class="string">import</span> &#123; <span class="string">ref</span> &#125; <span class="string">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line">  <span class="string">defineProps(&#123;</span></span><br><span class="line">    <span class="attr">modelValue:</span> &#123;</span><br><span class="line">      <span class="attr">type:</span> <span class="string">String</span>,</span><br><span class="line">      <span class="attr">default:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  <span class="string">&#125;)</span></span><br><span class="line">  <span class="string">const</span> <span class="string">$emit</span> <span class="string">=</span> <span class="string">defineEmits([&#x27;update:modelValue&#x27;])</span></span><br><span class="line">  <span class="string">const</span> <span class="string">vle</span> <span class="string">=</span> <span class="string">ref()</span></span><br><span class="line">  <span class="string">const</span> <span class="string">handleInput</span> <span class="string">=</span> <span class="string">()</span> <span class="string">=&gt;</span> &#123;</span><br><span class="line">    <span class="string">$emit(&#x27;update:modelValue&#x27;</span>, <span class="string">vle.value)</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="string">&lt;style&gt;</span></span><br><span class="line">  <span class="string">.input</span> &#123;</span><br><span class="line">    <span class="attr">width:</span> <span class="string">200px;</span></span><br><span class="line">    <span class="attr">height:</span> <span class="string">30px;</span></span><br><span class="line">    <span class="attr">border:</span> <span class="string">1px</span> <span class="string">solid</span> <span class="comment">#dcdcdc;</span></span><br><span class="line">    <span class="attr">outline:</span> <span class="string">none;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="string">&lt;/style&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h2><h3 id="lazy"><a href="#lazy" class="headerlink" title="-lazy"></a>-lazy</h3><div style="text-indent:2em;">
+v-model 在进行双向绑定时，绑定的是 input 事件，那么会在每次内容输入后就将最新的值和绑定的属性进行同步；如果我们在 v-model 后跟上 <mark class="hl-label orange">.lazy</mark>  修饰符，那么会将绑定的事件切换为 <mark class="hl-label blue">change事件</mark> ，只有在提交时（比如回车）才会触发。
+</div>
+
+<p>例如：<code>&lt;input type=&quot;text&quot; v-model.lazy=&quot;value&quot; /&gt;</code></p>
+<h3 id="number"><a href="#number" class="headerlink" title="-number"></a>-number</h3><div style="text-indent:2em;">
+如果我们希望转换为数字类型，那么可以使用 <mark class="hl-label orange">.number</mark>  修饰符；如果是一个 string 类型，在可以转化的情况下会进行隐式转换的
+</div>
+
+<p>例如：<code>&lt;input type=&quot;text&quot; v-model.number=&quot;value&quot; /&gt;</code></p>
+<h3 id="trim"><a href="#trim" class="headerlink" title="-trim"></a>-trim</h3><div style="text-indent:2em;">
+如果要自动过滤用户输入的空白字符，可以给 v-model 添加 <mark class="hl-label orange">.trim</mark>  修饰符。
+</div>
+
+<p>例如：<code>&lt;input type=&quot;text&quot; v-model.trim=&quot;value&quot; /&gt;</code></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://vercel.slk427.top">KK</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://vercel.slk427.top/v-model/">https://vercel.slk427.top/v-model/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://vercel.slk427.top" target="_blank">KK</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/vue/">vue</a></div><div class="post_share"><div class="social-share" data-image="https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/vue-directives/" title="vue自定义指令"><img class="cover" src="https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">vue自定义指令</div></div></a></div><div class="next-post pull-right"><a href="/markdown/" title="markdown 语法"><img class="cover" src="https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">markdown 语法</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/hello-world/" title="Hello World"><img class="cover" src="https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-23</div><div class="title">Hello World</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">KK</div><div class="author-info__description">云想衣裳花想容，春风拂槛露华浓。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/shalian"><i class="fab fa-github"></i><span>Github</span></a></div><div class="card-widget card-times"><div class="item-headline"><i></i><span></span></div><div class="item-content"><div id="aside-area-top"> <div id="aside-time-left"></div> <div id="aside-time-right"></div> </div> <div id="aside-calendar"> <div id="calendar-area-left"> <div id="calendar-week"></div> <div id="calendar-date"></div> <div id="calendar-animal"></div> <div id="calendar-lunar"></div> </div> <div id="calendar-area-right"> <div id="calendar-month"></div> <div id="calendar-main"> <div class="calendar-rh"> <div class="calendar-d0"><a>日</a></div> <div class="calendar-d1"><a>一</a></div> <div class="calendar-d2"><a>二</a></div> <div class="calendar-d3"><a>三</a></div> <div class="calendar-d4"><a>四</a></div> <div class="calendar-d5"><a>五</a></div> <div class="calendar-d6"><a>六</a></div> </div> </div> </div> </div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-v-model"><span class="toc-text">什么是 v-model</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E7%90%86"><span class="toc-text">原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-text">代码示例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="toc-text">基本使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E4%BC%A0%E5%80%BC"><span class="toc-text">组件传值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%88%B6%E7%BB%84%E4%BB%B6"><span class="toc-text">父组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E7%BB%84%E4%BB%B6"><span class="toc-text">子组件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-text">修饰符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lazy"><span class="toc-text">-lazy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#number"><span class="toc-text">-number</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#trim"><span class="toc-text">-trim</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/hello-world/" title="Hello World"><img src="https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/hello-world/" title="Hello World">Hello World</a><time datetime="2023-09-23T12:43:19.820Z" title="发表于 2023-09-23 20:43:19">2023-09-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/h5-data/" title="HTML5的 data-* 属性"><img src="https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="HTML5的 data-* 属性"/></a><div class="content"><a class="title" href="/h5-data/" title="HTML5的 data-* 属性">HTML5的 data-* 属性</a><time datetime="2023-09-11T05:07:22.000Z" title="发表于 2023-09-11 13:07:22">2023-09-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/vue-directives/" title="vue自定义指令"><img src="https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="vue自定义指令"/></a><div class="content"><a class="title" href="/vue-directives/" title="vue自定义指令">vue自定义指令</a><time datetime="2023-09-11T03:36:25.000Z" title="发表于 2023-09-11 11:36:25">2023-09-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/v-model/" title="v-model的使用"><img src="https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="v-model的使用"/></a><div class="content"><a class="title" href="/v-model/" title="v-model的使用">v-model的使用</a><time datetime="2023-09-10T02:48:53.000Z" title="发表于 2023-09-10 10:48:53">2023-09-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/markdown/" title="markdown 语法"><img src="https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="markdown 语法"/></a><div class="content"><a class="title" href="/markdown/" title="markdown 语法">markdown 语法</a><time datetime="2023-09-04T05:49:23.000Z" title="发表于 2023-09-04 13:49:23">2023-09-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023  <i id="heartbeat" class="fa fas fa-heartbeat"></i> KK</div><div class="framework-info"></div><div class="footer_custom_text"><div id="runtime"></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><canvas id="universe"></canvas><div class="aplayer no-destroy" data-id="60198" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-autoplay="false"> </div><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.6.0/jquery.min.js" type="application/javascript"></script><script src="/js/jquery.fireworks.js" type="application/javascript"></script><script src="https://cdn.wpon.cn/2022-sucai/Gold-ingot.js"></script><script async src="/js/weather.js"></script><script src="/js/universe.js"></script><script src="/js/nav.js"></script><script src="/js/footer.js"></script><script src="/js/sideConfig.js"></script><script async src="/js/grayscale.js"></script><script async src="/js/weibo.js"></script><script async src="/js/lunar.js"></script><script async src="/js/new_year.js"></script><script async src="/js/runtime.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script></div></div></body></html>

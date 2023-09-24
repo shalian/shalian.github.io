@@ -1,0 +1,24 @@
+.tag-cloud-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tag-cloud-list>a {
+    margin: 4px 10px;
+    padding: 3px 15px;
+    font-size: 1.2em !important;
+    border-radius: 8px;
+    border: 1px solid #ccc !important;
+    background: transparent !important;
+    transition: all .4s;
+    user-select: none;
+    list-style: none !important;
+    cursor: pointer;
+}
+
+.tag-cloud-list>a:hover {
+    color: #fff !important;
+    transform: scale(1.1);
+    background: rgb(78, 160, 238) !important;
+    border-color: rgb(78, 160, 238) !important;
+}

@@ -1,0 +1,7 @@
+.heart{
+  pointer-events: none !important;
+}
+
+.layout.hide-aside{
+  max-width: 1200px;
+}
