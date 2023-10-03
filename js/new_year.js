@@ -1,15 +1,17 @@
-
 /**
  * 新年倒计时卡片
  * https://blog.leonus.cn/2023/newYearCard.html
  */
+
+const year = '2024',
+    newYearDay = '2024-02-10 00:00:00';
 
 let newYearTimer = null;
 var newYear = () => {
     clearTimeout(newYearTimer);
     if (!document.querySelector('#newYear')) return;
     // 新年时间戳 and 星期对象
-    let newYear = new Date('2023-02-10 00:00:00').getTime() / 1000,
+    let newYear = new Date(newYearDay).getTime() / 1000,
         week = { 0: '周日', 1: '周一', 2: '周二', 3: '周三', 4: '周四', 5: '周五', 6: '周六' }
 
     time();
@@ -22,7 +24,7 @@ var newYear = () => {
         let now = new Date();
 
         // 右下角 今天
-        document.querySelector('#newYear .today').innerHTML = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate() + ' ' + week[now.getDay()]
+        document.querySelector('#newYear .today').innerHTML = '今日：' + now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate() + ' ' + week[now.getDay()]
 
         // 现在与新年相差秒数
         let second = newYear - Math.round(now.getTime() / 1000);
@@ -33,7 +35,7 @@ var newYear = () => {
             document.querySelector('#newYear .newYear-time').innerHTML = '<span class="happyNewYear">新年快乐</span>';
         } else {
             // 大于0则还未过年
-            document.querySelector('#newYear .title').innerHTML = '距离2024年春节：'
+            document.querySelector('#newYear .title').innerHTML = `距离${year}年春节：`
 
             // 大于一天则直接渲染天数
             if (second > 86400) {
@@ -55,7 +57,7 @@ var newYear = () => {
     // 元宝飘落
     jQuery(document).ready(function($) {
         $('#newYear').wpSuperSnow({
-            flakes: ['/img/yb1.webp', '/img/yb2.webp', '/img/yb3.webp'],
+            flakes: ['https://qiniu.slk427.top/blog/img/yb1.webp', 'https://qiniu.slk427.top/blog/img/yb2.webp', 'https://qiniu.slk427.top/blog/img/yb3.webp'],
             totalFlakes: '100',
             zIndex: '1',
             maxSize: '30',
@@ -66,9 +68,10 @@ var newYear = () => {
 }
 
 newYear();
+
 function whenDOMReady() {
-  // pjax加载完成（切换页面）后需要执行的函数和代码
-  newYear();
+    // pjax加载完成（切换页面）后需要执行的函数和代码
+    newYear();
 }
 
 document.addEventListener("pjax:complete", whenDOMReady); // pjax加载完成（切换页面）后再执行一次
