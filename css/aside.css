@@ -1,11 +1,25 @@
+
+/* 目录 */
+#aside-content #card-toc .toc-content {
+  margin: 0px !important;
+  width: calc(100% + 24px) !important;
+  padding-right: 24px;
+}
+
+#aside-content #card-toc .toc-content > * {
+  margin: 0 0px !important;
+}
+
+
+
 /* 标签修改 */
-.card-tags .card-tag-cloud >a{
+.card-tags .card-tag-cloud>a {
   line-height: 1.2;
   padding: 5px 8px !important;
-  background-color: rgba(0,0,0,0.05);
+  background-color: rgba(0, 0, 0, 0.05);
   border-radius: 6px;
 }
 
-.card-tags .card-tag-cloud >a + a{
+.card-tags .card-tag-cloud>a+a {
   margin-left: 6px;
 }

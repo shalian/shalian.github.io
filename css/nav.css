@@ -49,7 +49,14 @@
 
 #nav a {
     color: inherit;
-    transition: color .4s !important;
+    transition: color 0.3s !important;
+}
+
+
+/* 无顶部图片时的 logo 部分 */
+
+#page-header.not-top-img #nav .site-name {
+    transition: color 0.3s !important;
 }
 
 #nav #blog-info {
@@ -113,7 +120,7 @@
 }
 
 
-/* 768px + nav菜单 */
+/* nav菜单 (768px+) */
 
 #nav #menus,
 #nav #search-button,
@@ -143,12 +150,24 @@
 
 #nav #menus .menus_items .menus_item>a>span {
     margin-top: 3px;
-    font-size: 16px;
+    font-size: 18px !important;
     line-height: 1;
 }
 
+#nav #menus .menus_items .menus_item>a i {
+    font-size: 18px !important;
+}
 
-/* 768px - nav菜单 */
+#nav #menus .menus_items .menus_item .menus_item_child>li a>i.iconfont {
+    display: inline-block;
+    width: 20px;
+}
+
+
+/* nav菜单 ( 768px-) */
+
+
+/* 按钮 */
 
 #nav #menus #toggle-menu {
     display: flex !important;
@@ -188,6 +207,14 @@
 }
 
 
+/* 内容 */
+
+#sidebar #sidebar-menus #menus_items .menus_item a.site-page i {
+    display: inline-block !important;
+    font-size: 18px !important;
+}
+
+
 /* 去除导航栏选项中底下的蓝条 */
 
 #nav *::after {
@@ -201,13 +228,15 @@
 }
 
 
-/* 导航栏菜单鼠标移入字体放大 */
+/* 导航栏菜单鼠标移入效果   nav hover */
 
-#nav #site-name:hover,
+#nav #blog-info a:hover,
+#page-header.not-top-img #nav .site-name:hover,
 #nav #menus .menus_item:hover>a span,
 #nav #menus .menus_item:hover>a i,
-#nav #search-button:hover {
-    font-size: 18px;
+#nav #search-button a:hover {
+    color: #49b1f5 !important;
+    transition: all 0.1s !important;
 }
 
 @media screen and (min-width: 769px) {

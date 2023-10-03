@@ -65,16 +65,19 @@ div#runtime {
   padding: .5rem;
   display: flex;
   justify-content: center;
-  font-size: 1.3rem;
-  line-height: 2rem
+  /* font-size: 1.3rem;
+  line-height: 2rem; */
+  font-size: 20px;
+  line-height: 21px;
 }
 
+/* 64% */
 #aside-time-left {
-  width: 64%
+  width: 58%;
 }
-
+/* 36% */
 #aside-time-right {
-  width: 36%;
+  width: 42%;
   margin-left: .5rem
 }
 

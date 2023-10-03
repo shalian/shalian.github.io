@@ -1,3 +1,9 @@
+
+/**
+ * 新年倒计时卡片
+ * https://blog.leonus.cn/2023/newYearCard.html
+ */
+
 let newYearTimer = null;
 var newYear = () => {
     clearTimeout(newYearTimer);
