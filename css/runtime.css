@@ -115,10 +115,23 @@ div#runtime {
 }
 
 @media screen and (max-width: 1031px) {
-    #aside-calendar #calendar-area-left #calendar-animal,
-    #aside-calendar #calendar-area-left #calendar-lunar {
-        letter-spacing: 5px !important;
-    }
+  #aside-calendar #calendar-area-left #calendar-animal,
+  #aside-calendar #calendar-area-left #calendar-lunar {
+      letter-spacing: 5px !important;
+  }
+}
+
+@media screen and (max-width: 900px) and (min-width:264px) {
+  #aside-calendar #calendar-area-left #calendar-animal,
+  #aside-calendar #calendar-area-left #calendar-lunar {
+      letter-spacing: 0px !important;
+  }
+}
+@media screen and (max-width: 263px) {
+  #aside-calendar #calendar-area-left #calendar-animal,
+  #aside-calendar #calendar-area-left #calendar-lunar {
+      letter-spacing: 5px !important;
+  }
 }
 
 #calendar-area-left #calendar-animal {
@@ -141,7 +154,7 @@ div#runtime {
 #calendar-week {
     height: 1.1rem;
     font-size: 1.1rem;
-    color: #0096ff;
+    color: var(--btn-bg);
     font-weight: 700;
     margin-bottom: .5rem;
     align-items: center;
@@ -182,7 +195,7 @@ div#runtime {
 }
 
 #calendar-main a.now {
-    background: #0096ff;
+    background: var(--btn-bg);
     color: #fff
 }
 

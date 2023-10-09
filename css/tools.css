@@ -1,7 +1,3 @@
-* {
-  list-style: none;
-}
-
 /*  */
 /*  */
 .tool-list {
@@ -26,40 +22,48 @@
   transition: all 0.3s;
   overflow: hidden;
 }
+
 /* min: 1054 */
 @media screen and (min-width: 1054px) {
   .tool-list .tool-list-item {
     min-width: 220px;
     max-width: calc(25% - 12px) !important;
   }
+
   .tool-list .tool-list-item:nth-child(4n) {
     margin-right: 0px !important;
   }
 }
+
 /* max: 1053 */
 @media screen and (max-width: 1053px) and (min-width: 769px) {
   .tool-list .tool-list-item {
     min-width: calc(33.33% - 12px) !important;
     max-width: calc(33.33% - 12px) !important;
   }
+
   .tool-list .tool-list-item:nth-child(3n) {
     margin-right: 0px !important;
   }
 }
+
 @media screen and (max-width: 768px) and (min-width: 521px) {
   .tool-list .tool-list-item {
     min-width: calc(50% - 12px) !important;
     max-width: calc(50% - 12px) !important;
   }
+
   .tool-list .tool-list-item:nth-child(2n) {
     margin-right: 0px !important;
   }
 }
+
 @media screen and (max-width: 520px) {
   .tool-list .tool-list-item {
     min-width: calc(100% - 12px) !important;
     max-width: calc(100% - 12px) !important;
   }
+
   .tool-list .tool-list-item {
     margin-right: 0px !important;
   }
@@ -69,11 +73,12 @@
   border-color: skyblue;
   background: rgba(0, 0, 0, 0.1);
 }
-.tool-list .tool-list-item:hover > a .tool-avatar {
+
+.tool-list .tool-list-item:hover>a .tool-avatar {
   transform: scale(1.1);
 }
 
-.tool-list .tool-list-item > a {
+.tool-list .tool-list-item>a {
   position: absolute;
   top: 0;
   left: 0;
@@ -86,11 +91,12 @@
   color: var(--font-color) !important;
   user-select: none;
 }
-.tool-list .tool-list-item > a:hover {
+
+.tool-list .tool-list-item>a:hover {
   text-decoration: none !important;
 }
 
-.tool-list .tool-list-item > a .tool-avatar {
+.tool-list .tool-list-item>a .tool-avatar {
   position: relative;
   margin: 0px 14px 0px 0px !important;
   width: 60px;
@@ -100,15 +106,16 @@
   overflow: hidden;
 }
 
-.tool-list .tool-list-item > a .tool-item-info {
+.tool-list .tool-list-item>a .tool-item-info {
   display: flex;
   flex-direction: column;
   justify-content: start;
   padding-right: 6px !important;
   width: calc(100% - 60px - 14px);
 }
-.tool-list .tool-list-item > a .tool-item-info h3,
-.tool-list .tool-list-item > a .tool-item-info p {
+
+.tool-list .tool-list-item>a .tool-item-info h3,
+.tool-list .tool-list-item>a .tool-item-info p {
   margin: 0px !important;
   font-size: 14px !important;
   line-height: 1.2;
@@ -116,11 +123,13 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
-.tool-list .tool-list-item > a .tool-item-info h3 {
+
+.tool-list .tool-list-item>a .tool-item-info h3 {
   font-size: 18px !important;
   line-height: 1.5;
 }
-.tool-list .tool-list-item > a .tool-item-info p {
+
+.tool-list .tool-list-item>a .tool-item-info p {
   display: -webkit-box;
   box-orient: vertical;
   -webkit-box-orient: vertical;

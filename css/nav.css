@@ -24,6 +24,17 @@
     -webkit-box-shadow: none;
 }
 
+#aside-content .card-widget.card-info .avatar-img img,
+#sidebar #sidebar-menus .avatar-img img{
+  cursor: pointer;
+}
+
+#aside-content .card-widget.card-info .avatar-img img:hover,
+#sidebar #sidebar-menus .avatar-img img:hover{
+  transform: rotate(0deg);
+  transform: scale(1.1);
+}
+
 
 /* 导航栏做居中处理 */
 
@@ -94,7 +105,7 @@
 }
 
 #nav #weather:hover .sw-bar-slim {
-    color: #49b1f5 !important;
+    color: var(--btn-bg) !important;
 }
 
 #nav #weather #tp-weather-widget,
@@ -186,6 +197,9 @@
     width: 26px;
     height: 26px;
 }
+#nav #menus #toggle-menu>a.site-page:hover{
+  color: var(--btn-bg);
+}
 
 #nav #blog-info a {
     padding: 0px 14px;
@@ -239,8 +253,13 @@
 #nav #menus .menus_item:hover>a span,
 #nav #menus .menus_item:hover>a i,
 #nav #search-button a:hover {
-    color: #49b1f5 !important;
+    color: var(--btn-bg) !important;
     transition: all 0.1s !important;
+    cursor:url(https://qiniu.slk427.top/blog/img/pointer.cur),pointer;
+}
+
+#nav #menus .menus_item .menus_item_child a:hover{
+    cursor:url(https://qiniu.slk427.top/blog/img/pointer.cur),pointer;
 }
 
 @media screen and (min-width: 769px) {

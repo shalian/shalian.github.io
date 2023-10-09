@@ -1,3 +1,13 @@
+/*鼠标指针样式*/
+body{
+  cursor:url(https://qiniu.slk427.top/blog/img/default.cur),default;
+}
+/*鼠标链接指针样式*/
+a:hover{
+  cursor:url(https://qiniu.slk427.top/blog/img/pointer.cur),pointer;
+}
+/*鼠标样式结束*/
+
 .heart{
   pointer-events: none !important;
 }
