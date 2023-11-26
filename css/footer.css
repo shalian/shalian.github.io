@@ -2,45 +2,46 @@
 /* 渐变色滚动动画 */
 @-webkit-keyframes Gradient {
   0% {
-      background-position: 0 50%;
+    background-position: 0 50%;
   }
 
   50% {
-      background-position: 100% 50%;
+    background-position: 100% 50%;
   }
 
   100% {
-      background-position: 0 50%;
+    background-position: 0 50%;
   }
 }
 
 @-moz-keyframes Gradient {
   0% {
-      background-position: 0 50%;
+    background-position: 0 50%;
   }
 
   50% {
-      background-position: 100% 50%;
+    background-position: 100% 50%;
   }
 
   100% {
-      background-position: 0 50%;
+    background-position: 0 50%;
   }
 }
 
 @keyframes Gradient {
   0% {
-      background-position: 0 50%;
+    background-position: 0 50%;
   }
 
   50% {
-      background-position: 100% 50%;
+    background-position: 100% 50%;
   }
 
   100% {
-      background-position: 0 50%;
+    background-position: 0 50%;
   }
 }
+
 #footer {
   background: linear-gradient(-45deg, #ee7752, #ce3e75, #23a6d5, #23d5ab);
   background-size: 400% 400%;
@@ -55,25 +56,30 @@
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
+
 #footer:before {
   background-color: rgba(0, 0, 0, 0);
 }
 
-#footer #footer-wrap .footer-wrap-item{
+#footer #footer-wrap {
+  padding: 20px !important;
+}
+
+#footer #footer-wrap .footer-wrap-item {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   height: 32px;
 }
 
-#footer #footer-wrap .footer-wrap-item .footer-separator{
+#footer #footer-wrap .footer-wrap-item .footer-separator {
   display: flex;
   align-items: center;
   padding-top: 4px;
   height: 20px;
 }
 
-#footer #footer-wrap .footer-wrap-item .footer_logo{
+#footer #footer-wrap .footer-wrap-item .footer_logo {
   display: flex;
   height: 20px;
   font-size: 12px;
@@ -82,35 +88,37 @@
 }
 
 #footer #footer-wrap .footer-wrap-item .footer_logo span,
-#footer #footer-wrap .footer-wrap-item .footer_logo a{
+#footer #footer-wrap .footer-wrap-item .footer_logo a {
   color: #fff;
 }
 
-#footer #footer-wrap .footer-wrap-item .footer_logo >span{
+#footer #footer-wrap .footer-wrap-item .footer_logo>span {
   padding: 3px 5px 0px;
   display: flex;
   align-items: center;
   height: 100%;
-  background: rgb(254,125,55);
+  background: rgb(254, 125, 55);
 }
 
-#footer #footer-wrap .footer-wrap-item a{
+#footer #footer-wrap .footer-wrap-item a {
   padding: 0px 5px 0px 4px;
   display: flex;
   align-items: center;
   height: 100%;
-  background: rgb(85,85,85);
+  background: rgb(85, 85, 85);
 }
-#footer #footer-wrap .footer-wrap-item a:hover{
+
+#footer #footer-wrap .footer-wrap-item a:hover {
   text-decoration: none !important;
 }
 
-#footer #footer-wrap .footer-wrap-item a img{
+#footer #footer-wrap .footer-wrap-item a img {
   margin-right: 3px;
   width: 14px;
   height: 14px;
 }
-#footer #footer-wrap .footer-wrap-item a >span{
+
+#footer #footer-wrap .footer-wrap-item a>span {
   padding: 2px 0px 0px 0px;
   display: flex;
   align-items: center;

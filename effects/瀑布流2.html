@@ -1,0 +1,284 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .box {
+      margin: 50px auto 0px !important;
+      width: 80%;
+      height: 50vh !important;
+      background: #efefef;
+      overflow: hidden auto;
+      position: relative;
+    }
+
+    .box ul {
+      width: 100%;
+      position: relative;
+    }
+
+    .item {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 50px;
+      border: 1px solid #000;
+    }
+
+    .item img {
+      width: 100%;
+      height: 100%;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="box"></div>
+</body>
+<script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+  const urlArr = [
+    {
+      src: 'https://img1.baidu.com/it/u=4215781871,595897871&fm=253&fmt=auto&app=120&f=JPEG?w=1067&h=800',
+    },
+    {
+      src: 'https://img2.baidu.com/it/u=1713796643,4188877777&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500',
+    },
+    {
+      src: 'https://img2.baidu.com/it/u=676258172,2884080302&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=889',
+    },
+    {
+      src: 'https://img2.baidu.com/it/u=1278872498,1824865385&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=889',
+    },
+    {
+      src: 'https://img1.baidu.com/it/u=1804264524,1958775309&fm=253&fmt=auto&app=138&f=PNG?w=500&h=788',
+    },
+    {
+      src: 'https://img0.baidu.com/it/u=3887341367,3496736065&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=887',
+    },
+    {
+      src: 'https://img0.baidu.com/it/u=2462273704,1884223138&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500',
+    },
+    {
+      src: 'https://img1.baidu.com/it/u=2080801041,3349735074&fm=253&app=120&size=w931&n=0&f=JPEG&fmt=auto?sec=1697562000&t=9de0b820cf831600ec064d0ef2a44d80',
+    },
+    {
+      src: 'https://img2.baidu.com/it/u=3344911223,3409692090&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=313',
+    },
+    {
+      src: 'https://img2.baidu.com/it/u=895865425,736978298&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=1254',
+    },
+    {
+      src: 'https://img1.baidu.com/it/u=3045548345,351215258&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=1093',
+    },
+    {
+      src: 'https://img2.woyaogexing.com/2023/10/15/a4834f83699e4749542f2f1f82546664.jpg',
+    },
+  ]
+
+  const columns = 3 // 列数
+  const size = 10; // 滚动到底部 加载数量
+  const distanceX = 20, // 水平间距
+    distanceY = 20, // 垂直间距
+    scrollBarWid = 10 // 滚动条宽度
+
+  let waterFallContainer = $('.box'),
+    waterFallUl = $('<ul id="water-fall-container"></ul>')
+
+  // 1 确定图片的宽度 - 滚动条宽度
+  var parentWidth = (getParentClient().width - distanceX * (columns - 1)) - scrollBarWid
+  var itemWidth = parseInt(parentWidth / columns) //得到item的宽度
+
+  // 创建子元素
+  function createItemFn (item) {
+    return `
+        <li class="item">
+          <img src="${item.src}" alt=""/>
+        </li>
+      `
+  }
+
+  urlArr.forEach((item) => {
+    const itemDom = $(createItemFn(item))
+    $(itemDom).width(itemWidth) //设置到item的宽度
+    $(waterFallUl).append(itemDom)
+  })
+
+
+  // waterFallContainer.append(waterFallUl)
+  function waterFall () {
+    if (waterFallContainer.find($(waterFallUl)).length) waterFallContainer.remove($(waterFallUl))
+    waterFallContainer.append(waterFallUl)
+
+    var arr = []
+    $(waterFallUl.children()).each(function (i) {
+      var height = $(this).find('img').height()
+      // console.log(height);
+      if (i < columns) {
+        // 2 第一行按序布局
+        // console.log($(this));
+        $(this).css({
+          top: 0,
+          left: itemWidth * i + distanceX * i,
+        })
+        //将行高push到数组
+        arr.push(height)
+      } else {
+        // 其他行
+        // 3 找到数组中最小高度  和 它的索引
+        var minHeight = arr[0]
+        var index = 0
+        for (var j = 0; j < arr.length; j++) {
+          if (minHeight > arr[j]) {
+            minHeight = arr[j]
+            index = j
+          }
+        }
+        // 4 设置下一行的第一个盒子位置
+        // top值就是最小列的高度
+        $(this).css({
+          top: arr[index] + distanceY, //设置30的距离
+          left: $('.box .item').eq(index).css('left'),
+        })
+
+        // 5 修改最小列的高度
+        // 最小列的高度 = 当前自己的高度 + 拼接过来的高度
+        arr[index] = arr[index] + height + distanceY //设置30的距离
+      }
+    })
+
+    // 设置容器高度
+    $(waterFallUl).css({
+      height: findMaxHeightChild().maxH + 'px',
+    })
+  }
+  //clientWidth 处理兼容性
+  function getParentClient () {
+    return {
+      width: waterFallContainer.innerWidth(),
+      height:
+        window.innerHeight ||
+        document.documentElement.clientHeight ||
+        document.body.clientHeight,
+    }
+  }
+
+  // 页面尺寸改变时实时触发
+  window.onresize = function () {
+    // 改变屏幕尺寸，重新设置宽度
+    parentWidth = (getParentClient().width - distanceX * (columns - 1)) - scrollBarWid
+    itemWidth = parseInt(parentWidth / columns) //得到item的宽度
+
+
+    $(waterFallUl).children().each(function (i) {
+      $(this).width(itemWidth) //设置到item的宽度
+    })
+
+    //重新定义瀑布流
+    waterFall()
+  }
+
+  //初始化
+  // $(function () { })
+  window.onload = function () {
+    //实现瀑布流
+    waterFall()
+
+    if (checkScrollBottom()) {
+      for (let i = 0; i < size; i++) {
+        const item = urlArr[Math.floor(Math.random() * urlArr.length)]
+        const itemDom = $(createItemFn(item))
+        $(itemDom).width(itemWidth) //设置到item的宽度
+        $(waterFallUl).append(itemDom)
+      }
+      //实现瀑布流
+      waterFall()
+    }
+  }
+
+  waterFallContainer.scroll(() => {
+    // console.log(checkScrollBottom());
+    if (checkScrollBottom()) {
+      for (let i = 0; i < size; i++) {
+        const item = urlArr[Math.floor(Math.random() * urlArr.length)]
+        const itemDom = $(createItemFn(item))
+        $(itemDom).width(itemWidth) //设置到item的宽度
+        $(waterFallUl).append(itemDom)
+      }
+      waterFall()
+    }
+  })
+
+  function findMaxHeightChild () {
+    // 最后一行元素的数组
+    const lastChildArr = []
+    for (let i = 0; i < columns; i++) {
+      lastChildArr.push($(`.item:nth-last-child(${i + 1})`))
+    }
+
+    let lastChildObj = {
+      maxH: 0, // 容器最大高度
+      ofsTop: 0,
+      maxHgItem: null
+    };
+    lastChildArr.forEach(item => {
+      const h = Math.ceil(parseFloat($(item).css('top')) + item.outerHeight())
+      if (lastChildObj.maxH < h && item.offset().top > 0) {
+        // console.log(item.offset().top, parseFloat($(item).css('top')));
+        lastChildObj = {
+          maxH: h,
+          ofsTop: item.offset().top,
+          maxHgItem: item
+        }
+      }
+    })
+
+    return lastChildObj
+  }
+
+  // 判断是否需要加载数据
+  function checkScrollBottom () {
+    const lastItem = $('.item').last(); //  $('.item:last')
+    const itemH = lastItem.outerHeight()
+    // console.log('itemH', itemH);
+    const lastItmeOffsetT = lastItem.offset().top;
+    const lastItemOutH = Math.floor(lastItem.outerHeight() / 2)
+
+    const { maxH, ofsTop, maxHgItem } = findMaxHeightChild()
+    // 滚动的高度
+    const scrollTop = waterFallContainer.scrollTop();
+    // 容器高度
+    const height = waterFallContainer.innerHeight();
+    // console.log('++++++++++++++++++++++++', scrollTop + height, maxH);
+    // ofbDistance ：底部加载数据 的距离
+    const ofbDistance = Math.ceil($(maxHgItem).outerHeight() * 0.95)
+
+    // return Math.floor(ofsTop + ofbDistance) <= Math.ceil(scrollTop + height) ? true : false
+    return Math.ceil(scrollTop + height) >= maxH ? true : false
+  }
+
+</script>
+
+</html>
+
+
