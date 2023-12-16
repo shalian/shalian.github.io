@@ -26,8 +26,8 @@
 
 .category-lists .category-list .category-list-item:hover {
   transform: scale(1.1);
-  background: rgb(78, 160, 238) !important;
-  border-color: rgb(78, 160, 238) !important;
+  background: #4997f5 !important;
+  border-color: #4997f5 !important;
 }
 
 .category-lists .category-list .category-list-item:hover .category-list-link,

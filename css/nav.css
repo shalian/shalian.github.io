@@ -105,7 +105,7 @@
 }
 
 #nav #weather:hover .sw-bar-slim {
-  color: #4997f5 !important;
+  color: var(--g-color-hover) !important;
 }
 
 #nav #weather #tp-weather-widget,
@@ -254,13 +254,13 @@
 #nav #menus .menus_item:hover>a span,
 #nav #menus .menus_item:hover>a i,
 #nav #search-button a:hover {
-  color: #4997f5 !important;
+  color: var(--g-color-hover) !important;
   transition: all 0.1s !important;
-  cursor: url(https://qiniu.slk427.top/blog/img/pointer.cur), pointer;
+  cursor: url(//qiniu.slk427.top/blog/img/pointer.cur), pointer;
 }
 
 #nav #menus .menus_item .menus_item_child a:hover {
-  cursor: url(https://qiniu.slk427.top/blog/img/pointer.cur), pointer;
+  cursor: url(//qiniu.slk427.top/blog/img/pointer.cur), pointer;
 }
 
 @media screen and (min-width: 769px) {

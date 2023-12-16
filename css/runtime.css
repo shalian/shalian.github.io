@@ -157,8 +157,9 @@ div#runtime {
     color: var(--btn-bg);
     font-weight: 700;
     margin-bottom: .5rem;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    display: flex
 }
 
 #calendar-month {
@@ -166,20 +167,24 @@ div#runtime {
 }
 
 #calendar-date {
-    height: 3rem;
+    margin-bottom: 0rem !important;
+    height: 5.4rem; /* 3rem */
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 1.2rem;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    display: flex
+    overflow: hidden;
 }
 
 #calendar-animal,
 #calendar-lunar {
     min-height: 1.5rem;
     font-size: .9rem;
-    align-items: center;
     display: flex;
+    justify-content: center;
+    align-items: center;
     line-height: 1.2;
 }
 
@@ -204,6 +209,7 @@ div#runtime {
 .calendar-r2,
 .calendar-r3,
 .calendar-r4,
+.calendar-r5,
 .calendar-rh {
     height: 1.2rem;
     display: flex
