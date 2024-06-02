@@ -3,6 +3,9 @@
   --g-color-red: #ff0000;
   --g-color-wihte: #fff;
   --g-color-hover:#4997f5;
+
+  /* size */
+  --g-max-layout-width: 1200px;
 }
 
 /* 
@@ -97,8 +100,8 @@
 .tag-cloud-list>a:hover {
   color: #fff !important;
   transform: scale(1.1);
-  background: rgb(78, 160, 238) !important;
-  border-color: rgb(78, 160, 238) !important;
+  background: var(--g-color-category) !important;
+  border-color: var(--g-color-category) !important;
 }
 
 
@@ -157,7 +160,7 @@
 }
 .category-lists .category-list .category-list-item:hover .category-list-link,
 .category-lists .category-list .category-list-item:hover .category-list-count{
-  color: white;
+  color: #fff;
 }
 .category-lists .category-list .category-list-item::before {
   display: none;
@@ -801,9 +804,9 @@ a {
   cursor: url(//qiniu.slk427.top/blog/img/pointer.cur), pointer;
 }
 
-#nav #menus .menus_item .menus_item_child a:hover {
+/* #nav #menus .menus_item .menus_item_child a:hover {
   cursor: url(//qiniu.slk427.top/blog/img/pointer.cur), pointer;
-}
+} */
 
 @media screen and (min-width: 769px) {
   #nav #menus #toggle-menu {
@@ -860,7 +863,7 @@ a {
  *
  */
 #newYear {
-  color: white;
+  color: #fff;
   padding: 0 !important;
 }
 
@@ -958,6 +961,7 @@ body{
   cursor:url(//qiniu.slk427.top/blog/img/default.cur),default;
 }
 /*鼠标链接指针样式*/
+#nav #menus .menus_item .menus_item_child a:hover,
 a:hover{
   cursor:url(//qiniu.slk427.top/blog/img/pointer.cur),pointer;
 }
@@ -968,7 +972,7 @@ a:hover{
 }
 
 .layout.hide-aside{
-  max-width: 1200px;
+  max-width: var(--g-max-layout-width);
 }
 
 
